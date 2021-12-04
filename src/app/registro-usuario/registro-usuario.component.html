@@ -1,0 +1,124 @@
+<div class="container"  style="margin-top:50px; max-width:650px;">
+    <h1>Registro de Usuario</h1>
+
+    <form [formGroup]="userForm" style="margin-top:50px;" (ngSubmit)="onSubmit()" #FormularioRegistro="ngForm" [hidden]="submitted">
+
+        <h3>Datos Personales:</h3>
+        <div class="form-group">
+            <label for="nombre">Nombre: </label>
+
+            <input placeholder="Ingrese Nombre" class="form-control" id="nombre" type="text" formControlName="nombre">
+            <div [hidden]="this.userForm.controls['nombre'].valid || this.userForm.controls['nombre'].pristine" class="alert alert-danger">El nombre es requerido</div>
+         
+            <label for="apellido">Apellido: </label>
+            <input placeholder="Ingrese Apellido" class="form-control" id="apellido" type="text" formControlName="apellido">
+        </div>  
+
+        <h3>Dirección:</h3>
+        <div formGroupName="direccion" class="form-group">
+            <label for="calle">Calle: </label>
+            <input placeholder="Ingrese Calle" class="form-control" id="calle" type="text" formControlName="calle" >
+
+            <label for="apellido">Altura: </label>
+            <input placeholder="Ingrese altura" class="form-control" id="altura" type="text" formControlName="altura">
+
+            <label for="codPostal">Codigo Postal: </label>
+            <input placeholder="Ingrese Codigo Postal" class="form-control" id="codPostal" type="text" formControlName="codPostal">
+        </div>  
+
+        <h3>Datos de Usuario:</h3>
+        <div formGroupName="usuario" class="form-group">
+            <label for="nombreUsuario">Usuario: </label>
+            <input class="form-control" id="nombreUsuario" type="text" formControlName="nombreUsuario">
+            
+            <label for="contrasena">Contraseña: </label>
+            <input class="form-control" id="contrasena" type="password" formControlName="contrasena">
+        </div> 
+
+        <div class="form-group">
+            <button type="button" class="btn btn-default">Limpiar</button>
+            <button type="submit" class="btn btn-success" [disabled]="!userForm.valid" style="margin-left: 10px;">Registrarme</button>
+        </div>
+
+        <p>Form Value: {{ userForm.value | json }}</p>
+
+        <p>Form Status: {{ userForm.status }}</p>
+
+    </form>
+
+    <div [hidden]="!submitted">
+        <h2>Se ha enviado el siguiente mensaje:</h2>
+        <div class="row">
+          <div class="col-xs-1">Nombre</div>
+          <div id="sndName" class="col-xs-11"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-1">Apellido</div>
+          <div id="sndApellido" class="col-xs-11"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-1">Usuario</div>
+          <div id="sndUsuario" class="col-xs-11"></div>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="submitted=false">Volver</button>
+    </div>
+
+</div>
+
+
+<!--
+<div class="container">
+
+    <h1>Formulario de Contacto</h1>
+    
+    <form (ngSubmit)="onSubmit()" #contactForm="ngForm" [hidden]="submitted">
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email"
+                required
+                [(ngModel)]="model.email" name="email" #email="ngModel">
+            <div [hidden]="email.valid || email.pristine" class="alert alert-danger"> Email es Requerido</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="motivos">Motivos</label>
+            <select class="form-control" id="motivos" required>
+            <option *ngFor="let motivo of motivos" [value]="motivo">{{motivo}}</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="texto">Mensaje</label>
+            <textarea class="form-control" id="texto" cols="40" rows="5" [(ngModel)]="model.texto" required name="texto" #texto="ngModel">
+            </textarea>
+            <div [hidden]="texto.valid || texto.pristine" class="alert alert-danger">Debe incluir un mensaje</div>
+        </div>
+
+        <div class="form-group">
+            <button type="button" class="btn btn-default" (click)="nuevoMensaje()">Limpiar</button>
+            <button type="submit" class="btn btn-success" [disabled]="!contactForm.form.valid" style="margin-left: 10px;">Enviar</button>
+        </div>
+
+    </form>
+
+    <div [hidden]="!submitted">
+        <h2>Se ha enviado el siguiente mensaje:</h2>
+        <div class="row">
+          <div class="col-xs-1">Email</div>
+          <div class="col-xs-11">{{ model.email }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-1">Motivo</div>
+          <div class="col-xs-11">{{ model.motivo }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-1">Mensaje</div>
+          <div class="col-xs-11">{{ model.texto }}</div>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="submitted=false">Editar</button>
+    </div>
+
+</div>-->
